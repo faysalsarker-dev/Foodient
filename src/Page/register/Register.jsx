@@ -11,8 +11,12 @@ import { RxCross2 } from "react-icons/rx";
 import useAuth from './../../hook/useAuth';
 import { useState } from "react";
 
+import axios from "axios";
+import { Helmet } from "react-helmet-async";
+
 
 const Register = () => {
+    // const axiosSecure= useAxios()
     const { googleLogin, createUser, setUser, profileUpdate,githubeLogin,
     } =useAuth()
     const [toggle, setToggle] = useState(false)
@@ -74,6 +78,7 @@ const Register = () => {
             .then(res => {
                 setUser(res.user);
                 toast.success('Google Register Successful ')
+             
             }).catch(err => {
                 setErr(err.massage)
                 toast.error("Someting went wrong")
@@ -88,6 +93,7 @@ const Register = () => {
             .then(res => {
                 setUser(res.user);
                 toast.success('Github Login Successful ')
+              
             }).catch(err => {
                 setErr(err.massage)
                 toast.error("Someting went wrong")
@@ -119,8 +125,13 @@ const Register = () => {
 
     }
 
+
     return (
         <div className="flex justify-center flex-col items-center my-5">
+                  <Helmet>
+        <title>Foodient | Register</title>
+       
+      </Helmet>
                <div className=" space-y-3">
                     <h2 className="text-center text-4xl font-extrabold">Welcome</h2>
                     <h4 className="text-center text-slate-500">Enter your details to get register a account.</h4>

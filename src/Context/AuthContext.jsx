@@ -9,16 +9,18 @@ import {
   updateProfile,
   GoogleAuthProvider,
   GithubAuthProvider,
-
   signInWithPopup,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import useAxios from "../hook/useAxios";
+import axios from "axios";
 
 const auth = getAuth(app);
 
 export const ContextData = createContext(null);
 
 const AuthContext = ({ children }) => {
+  const axiosSecure = useAxios();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [favorite, setFavorite] = useState([]);
@@ -67,9 +69,16 @@ const AuthContext = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedEmail = { email: userEmail };
       if (currentUser) {
         setUser(currentUser);
         setLoading(false);
+        axios.post('http://localhost:5000/jwt', loggedEmail, { withCredentials: true })
+        .then(res => {
+            console.log('token response', res.data);
+      
+        })
       } else {
         setLoading(false);
         setUser(null);
@@ -78,7 +87,7 @@ const AuthContext = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, auth]);
 
   const contextData = {
@@ -97,9 +106,7 @@ const AuthContext = ({ children }) => {
   };
 
   return (
-    <ContextData.Provider value={contextData}>
-        {children}
-    </ContextData.Provider>
+    <ContextData.Provider value={contextData}>{children}</ContextData.Provider>
   );
 };
 

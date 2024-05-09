@@ -7,6 +7,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 
 import toast from "react-hot-toast";
 import useAuth from "../../hook/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -74,6 +75,10 @@ const Login = () => {
 
     return (
         <div className="flex justify-center items-center h-[90vh] my-5">
+                  <Helmet>
+        <title>Foodient | Login</title>
+       
+      </Helmet>
             <div className="card  w-full  max-w-md  my-6">
                 <div className=" space-y-3">
                     <h2 className="text-center text-4xl font-bold">Welcome back</h2>
