@@ -13,7 +13,8 @@ import { useState } from "react";
 
 
 const Register = () => {
-    const { googleUser, createuser, setUser, profileUpdate, githubUser } =useAuth()
+    const { googleLogin, createUser, setUser, profileUpdate,githubeLogin,
+    } =useAuth()
     const [toggle, setToggle] = useState(false)
     const [err, setErr] = useState(false)
 
@@ -39,7 +40,7 @@ const Register = () => {
 
 
 
-        createuser(email, password)
+        createUser(email, password)
             .then(() => {
                 profileUpdate(name, photourl)
                     .then(updatedUser => {
@@ -69,7 +70,7 @@ const Register = () => {
     };
 
     const handleGoogle = () => {
-        googleUser()
+        googleLogin()
             .then(res => {
                 setUser(res.user);
                 toast.success('Google Register Successful ')
@@ -83,7 +84,7 @@ const Register = () => {
 
     const handleGithub = () => {
         console.log('github');
-        githubUser()
+        githubeLogin()
             .then(res => {
                 setUser(res.user);
                 toast.success('Github Login Successful ')
@@ -162,7 +163,7 @@ const Register = () => {
                         </label>
                     </div>
 
-                    {/* <div>
+                    <div>
                         <p className="mt-2">Password must contain</p>
                         <ul className="  pl-5 mt-2">
 
@@ -176,7 +177,7 @@ const Register = () => {
 
 
                         </ul>
-                    </div> */}
+                    </div>
 
                     <div className="form-control mt-6">
                         <button className="btn bg-[#F0273B]  text-white">Register</button>
