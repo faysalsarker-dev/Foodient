@@ -3,12 +3,24 @@ import { Helmet } from 'react-helmet-async';
 
 import Slider from '../../component/Slider';
 import HomeCard from './HomeCard';
-import { useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
+import useAxios from '../../hook/useAxios';
 
 const Home = () => {
-    const info = useLoaderData()
-    const [data,setData]=useState(info)
+ const axiosSecure = useAxios()
+    const [data,setData]=useState([])
+
+
+    useEffect(()=>{
+        axiosSecure.get('/allfood')
+        .then(res=>{
+          console.log(res.data)
+          setData(res.data)
+        })
+      },[axiosSecure])
+
+
     return (
         <div>
              <Helmet>

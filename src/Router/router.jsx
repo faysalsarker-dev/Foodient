@@ -9,6 +9,7 @@ import Home from "../Page/Home/Home";
 import AddFood from "../Page/addfood/AddFood";
 import RouterProtector from "../component/RouterProtector";
 import AvailableFood from "../Page/available/AvailableFood";
+import SingleFood from "../Page/singleFood/SingleFood";
 
 const router = createBrowserRouter([
     {
@@ -18,11 +19,16 @@ const router = createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>,
-                loader:()=> fetch('http://localhost:5000/allfood')
             },
             {
                 path:'/availablefoods',
-                element:<AvailableFood></AvailableFood>
+                element:<AvailableFood></AvailableFood>,
+                
+            },
+            {
+                path:'/food/:id',
+                element:<SingleFood></SingleFood>,
+                
             },
             {
                 path:'/addfood',

@@ -1,7 +1,22 @@
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { IoSearchOutline } from "react-icons/io5";
+import useAxios from "../../hook/useAxios";
+import HomeCard from "../Home/HomeCard";
+
 
 const AvailableFood = () => {
+const [data,setData]=useState([]);
+const axiosSecure = useAxios()
+
+useEffect(()=>{
+  axiosSecure.get('/Available-Foods')
+  .then(res=>{
+    console.log(res.data)
+    setData(res.data)
+  })
+},[axiosSecure])
+
   return (
     <div>
       <Helmet>
@@ -29,6 +44,21 @@ const AvailableFood = () => {
 
 
       </div>
+
+<div>
+  {
+    data?.map(pd=><HomeCard key={pd._id} pd={pd}></HomeCard>)
+  }
+</div>
+
+
+
+
+
+
+
+
+
     </div>
   );
 };

@@ -2,18 +2,18 @@
 
 import { Link } from "react-router-dom";
 
-
+import { CiLocationOn } from "react-icons/ci";
 
 
 
 const HomeCard = ({pd}) => {
-    const {_id,name,FoodQuantity,PickupLocation,AdditionalNotes,expiredate,Doner_name}=pd
+    const {_id,name,img,FoodQuantity,PickupLocation,AdditionalNotes,expiredate,Doner_name}=pd
   return (
     <div className="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border my-1">
       <img
         className=" rounded-lg"
-        src="https://img.freepik.com/free-photo/deep-fried-fhicken-roll-dark-surface_1150-43584.jpg?t=st=1715351827~exp=1715355427~hmac=bb7242efa340d0ef6acfd661e8b31d289bf6e967306e8a65fdbba5cc5614231b&w=900"
-        alt=""
+        src={img}
+        alt={name}
       />
       <div>
         <h1 className="text-2xl font-semibold">{name}</h1>
@@ -21,7 +21,7 @@ const HomeCard = ({pd}) => {
         <h4>
           <span className=" font-semibold">Notes:</span>{AdditionalNotes}
         </h4>
-        <h3>{PickupLocation}</h3>
+        <div className="flex gap-2"><div>Quantity:{FoodQuantity}</div><div className="flex items-center"><CiLocationOn />{PickupLocation}</div></div>
         <div className="flex justify-between items-center my-2">
           <div className="flex items-center gap-2">
             <div className="avatar">
@@ -34,7 +34,7 @@ const HomeCard = ({pd}) => {
             </div>
           </div>
           <div className="badge bg-[#E8751A] text-white">
-            <Link to={`/food-info/${_id}`}><button>View Detail</button></Link>
+            <Link to={`/food/${_id}`}><button>View Detail</button></Link>
           </div>
         </div>
       </div>

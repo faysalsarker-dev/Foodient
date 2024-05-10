@@ -23,6 +23,7 @@ const AddFood = () => {
     const Status = 'available';
     const Doner_email = user?.email
     const Doner_name = user?.displayName
+    const Doner_img = user?.photoURL
     const info = {
       name,
       img,
@@ -32,7 +33,8 @@ const AddFood = () => {
       expiredate,
       Status,
       Doner_email,
-      Doner_name
+      Doner_name,
+      Doner_img
     };
     console.log(info);
 
