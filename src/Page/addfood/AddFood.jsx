@@ -65,10 +65,12 @@ const AddFood = () => {
 
 
 
-      <div className=" shadow-xl p-5 rounded-lg  md:w-[90%]">
-        <h3 className="md:text-4xl text-2xl  font-extrabold my-8 text-center">
-          Add your Food
-        </h3>
+      <div className=" shadow-xl p-5 rounded-lg   md:w-[90%]">
+       <div className="flex justify-center items-center px-5">
+          <h3 className="md:text-4xl text-2xl  font-extrabold my-8 text-center pb-4 border-b-[#E8751A] border-b-2">
+            Add your Food
+          </h3>
+       </div>
 
         <form onSubmit={handleSubmit}>
           <div className=" grid md:grid-cols-2 grid-cols-1 gap-4">
