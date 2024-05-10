@@ -7,6 +7,8 @@ import Register from "../Page/register/Register";
 import Login from "../Page/login/Login";
 import Home from "../Page/Home/Home";
 import AddFood from "../Page/addfood/AddFood";
+import RouterProtector from "../component/RouterProtector";
+import AvailableFood from "../Page/available/AvailableFood";
 
 const router = createBrowserRouter([
     {
@@ -18,8 +20,12 @@ const router = createBrowserRouter([
                 element:<Home></Home>
             },
             {
+                path:'/availablefoods',
+                element:<AvailableFood></AvailableFood>
+            },
+            {
                 path:'/addfood',
-                element:<AddFood></AddFood>
+                element:<RouterProtector><AddFood></AddFood></RouterProtector>
             },
             {
                 path:'/register',

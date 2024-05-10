@@ -11,7 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import useAuth from './../../hook/useAuth';
 import { useState } from "react";
 
-import axios from "axios";
+
 import { Helmet } from "react-helmet-async";
 
 

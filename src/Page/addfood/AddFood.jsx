@@ -2,9 +2,12 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../../hook/useAuth";
+import useAxios from "../../hook/useAxios";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
   const { user } = useAuth();
+  const axiosSecure =useAxios()
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSubmit = (e) => {
@@ -16,7 +19,9 @@ const AddFood = () => {
     const PickupLocation = form.PickupLocation.value;
     const AdditionalNotes = form.AdditionalNotes.value;
     const expiredate = startDate;
-    const Status = 'available'
+    const Status = 'available';
+    const Doner_email = user?.email
+    const Doner_name = user?.displayName
     const info = {
       name,
       img,
@@ -24,13 +29,25 @@ const AddFood = () => {
       PickupLocation,
       AdditionalNotes,
       expiredate,
-      Status
+      Status,
+      Doner_email,
+      Doner_name
     };
     console.log(info);
+
+
+    axiosSecure.post('/addfood',info)
+    .then(res=>{
+      console.log(res.data);
+    })
   };
 
   return (
     <div>
+                  <Helmet>
+        <title>Foodient | Add Food</title>
+       
+      </Helmet>
       <div className="">
         <h3 className="md:text-4xl text-2xl md:text-start text-center font-extrabold my-8">
           Add your Food
@@ -109,7 +126,7 @@ const AddFood = () => {
               <h4>Donator</h4>
               <div className="avatar">
                 <div className="w-10 rounded-full">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <img src={user?.photoURL} />
                 </div>
               </div>
               <div>

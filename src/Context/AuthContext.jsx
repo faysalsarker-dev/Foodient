@@ -13,7 +13,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import useAxios from "../hook/useAxios";
-import axios from "axios";
+
 
 const auth = getAuth(app);
 
@@ -74,7 +74,7 @@ const AuthContext = ({ children }) => {
       if (currentUser) {
         setUser(currentUser);
         setLoading(false);
-        axios.post('http://localhost:5000/jwt', loggedEmail, { withCredentials: true })
+        axiosSecure.post('/jwt', loggedEmail)
         .then(res => {
             console.log('token response', res.data);
       
