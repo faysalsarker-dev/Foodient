@@ -9,11 +9,13 @@ import AvailableFood from "../Page/available/AvailableFood";
 import SingleFood from "../Page/singleFood/SingleFood";
 import FoodReq from "../Page/foodReq/FoodReq";
 import ManageFood from "../Page/manageFood/ManageFood";
+import NotFoundPage from "../Page/notFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<NotFoundPage></NotFoundPage>,
     children: [
       {
         path: "/",

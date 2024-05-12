@@ -18,7 +18,7 @@ console.log(data);
 
 
   useEffect(() => {
-    axiosSecure.get("/allfood").then((res) => {
+    axiosSecure.get("/featured-foods").then((res) => {
       setData(res.data);
     });
   }, [axiosSecure]);
@@ -40,7 +40,7 @@ console.log(data);
       </div>
 
       <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4 mt-10">
-        {data?.slice(0, 6).map((pd) => (
+        {data?.map((pd) => (
           <HomeCard key={pd._id} pd={pd}></HomeCard>
         ))}
       </div>

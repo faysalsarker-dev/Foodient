@@ -206,6 +206,7 @@ const info = {
   };
 
   return (
+    
     <div className="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border my-1">
       <img className="rounded-lg" src={img} alt={name} />
       <div className="flex flex-col">
