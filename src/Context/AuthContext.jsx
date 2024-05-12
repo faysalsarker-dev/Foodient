@@ -82,6 +82,10 @@ const AuthContext = ({ children }) => {
       } else {
         setLoading(false);
         setUser(null);
+        axiosSecure.post('/logout')
+        .then(res=>{
+          console.log(res.data);
+        })
       }
     });
     return () => {

@@ -24,12 +24,12 @@ const Navber = () => {
                     }>Add Food</NavLink>
                 </li>
                 <li>
-                    <NavLink to='/AvailableFoods' className={({ isActive }) =>
+                    <NavLink to='/Manage-My-Foods' className={({ isActive }) =>
                         isActive ? "mr-2 btn btn-ghost text-[#E8751A] font-bold" : "mr-2 btn btn-ghost"
                     }>Manage My Foods</NavLink>
                 </li>
                 <li>
-                    <NavLink to='/AvailableFoods' className={({ isActive }) =>
+                    <NavLink to='/Food-Request' className={({ isActive }) =>
                         isActive ? "mr-2 btn btn-ghost text-[#E8751A] font-bold" : "mr-2 btn btn-ghost"
                     }>Food Request</NavLink>
                 </li>
@@ -63,7 +63,7 @@ const Navber = () => {
     {nav}
         </ul>
       </div>
-      <a className="btn btn-ghost text-xl">daisyUI</a>
+      <a className="btn btn-ghost text-xl">Foodient</a>
     </div>
     <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -88,18 +88,16 @@ const Navber = () => {
           <img src={user.photoURL ? user.photoURL : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
           </div>
         </div>
-        <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li>
-            <a className="justify-between">
-              Profile
-              <span className="badge">New</span>
-            </a>
-          </li>
-          <li>
-            <a>Settings</a>
-          </li>
-          <li>
-           <button onClick={()=>logOut()}>Log out</button>
+        <ul className="menu menu-sm border space-y-2 dropdown-content text-center mt-3 z-[1] tee p-2 shadow bg-base-100 rounded-box w-52">
+          
+            <div className="justify-center">
+             {user?.displayName}
+            </div>
+            <div className="justify-center ">
+             {user?.email}
+            </div>
+          <li className="flex justify-center items-center">
+           <button className="w-full text-center text-white bg-[#E8751A]" onClick={()=>logOut()}>Log out</button>
           </li>
         </ul>
       </div>

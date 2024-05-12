@@ -7,7 +7,7 @@ import { CiLocationOn } from "react-icons/ci";
 
 
 const HomeCard = ({pd}) => {
-    const {_id,name,img,FoodQuantity,PickupLocation,AdditionalNotes,expiredate,Doner_name}=pd
+    const {_id,name,img,FoodQuantity,PickupLocation,AdditionalNotes,expiredate,Doner_name,Doner_img}=pd
   return (
     <div className="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border my-1">
       <img
@@ -17,16 +17,16 @@ const HomeCard = ({pd}) => {
       />
       <div>
         <h1 className="text-2xl font-semibold">{name}</h1>
-        <p>{expiredate}</p>
-        <h4>
-          <span className=" font-semibold">Notes:</span>{AdditionalNotes}
-        </h4>
+        <p>{new Date(expiredate).toLocaleString()}</p>
+        <p>
+          <span className=" font-semibold">Notes:</span>{AdditionalNotes.slice(0,50)}...
+        </p>
         <div className="flex gap-2"><div>Quantity:{FoodQuantity}</div><div className="flex items-center"><CiLocationOn />{PickupLocation}</div></div>
         <div className="flex justify-between items-center my-2">
           <div className="flex items-center gap-2">
             <div className="avatar">
               <div className="w-8 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={Doner_img} />
               </div>
             </div>
             <div>

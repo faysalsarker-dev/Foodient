@@ -1,7 +1,4 @@
-import {
-
-    createBrowserRouter
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root/Root";
 import Register from "../Page/register/Register";
 import Login from "../Page/login/Login";
@@ -10,40 +7,56 @@ import AddFood from "../Page/addfood/AddFood";
 import RouterProtector from "../component/RouterProtector";
 import AvailableFood from "../Page/available/AvailableFood";
 import SingleFood from "../Page/singleFood/SingleFood";
+import FoodReq from "../Page/foodReq/FoodReq";
+import ManageFood from "../Page/manageFood/ManageFood";
 
 const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Root></Root>,
+    children: [
+      {
         path: "/",
-        element:<Root></Root>,
-        children:[
-            {
-                path:'/',
-                element:<Home></Home>,
-            },
-            {
-                path:'/availablefoods',
-                element:<AvailableFood></AvailableFood>,
-                
-            },
-            {
-                path:'/food/:id',
-                element:<SingleFood></SingleFood>,
-                
-            },
-            {
-                path:'/addfood',
-                element:<RouterProtector><AddFood></AddFood></RouterProtector>
-            },
-            {
-                path:'/register',
-                element:<Register></Register>
-            },
-            {
-                path:'/login',
-                element:<Login></Login>
-            }
-        ]
-    },
+        element: <Home></Home>,
+      },
+      {
+        path: "/availablefoods",
+        element: <AvailableFood></AvailableFood>,
+      },
+      {
+        path: "/food/:id",
+        element: (
+          <RouterProtector>
+            <SingleFood></SingleFood>
+          </RouterProtector>
+        ),
+      },
+      {
+        path: "/Manage-My-Foods",
+        element: <ManageFood></ManageFood>,
+      },
+      {
+        path: "/Food-Request",
+        element: <FoodReq></FoodReq>,
+      },
+      {
+        path: "/addfood",
+        element: (
+          <RouterProtector>
+            <AddFood></AddFood>
+          </RouterProtector>
+        ),
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+    ],
+  },
 ]);
 
-export default router
+export default router;
