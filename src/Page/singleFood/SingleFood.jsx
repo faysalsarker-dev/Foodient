@@ -38,20 +38,7 @@ const SingleFood = () => {
 
 
 const  Status= 'request'
-const info = {
-  _id,
-  name,
-  img,
-  FoodQuantity,
-  PickupLocation,
-  AdditionalNotes,
-  expiredate,
-  Doner_name,
-  Doner_email,
-  Status,
-  requestor_email: user?.email,
-  requestor_name: user?.displayName
-};
+
  
 
  
@@ -64,6 +51,21 @@ const info = {
     }:${(now.getSeconds() < 10 ? "0" : "") + now.getSeconds()} ${
       now.getHours() >= 12 ? "PM" : "AM"
     }`;
+    const info = {
+      _id,
+      name,
+      img,
+      FoodQuantity,
+      PickupLocation,
+      AdditionalNotes,
+      expiredate,
+      Doner_name,
+      Doner_email,
+      Status,
+      requestor_email: user?.email,
+      requestor_name: user?.displayName,
+      request_time: formattedTime
+    };
 
     Swal.fire({
       title: "Are you sure?",
@@ -182,6 +184,7 @@ const info = {
   
         axiosSecure.patch(`/food-request/${_id}`, info)
         .then(res => {
+          console.log(res.data)
           if (res.data.acknowledged) {
             Swal.fire({
               title: "Requested!",

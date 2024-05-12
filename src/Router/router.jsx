@@ -10,12 +10,13 @@ import SingleFood from "../Page/singleFood/SingleFood";
 import FoodReq from "../Page/foodReq/FoodReq";
 import ManageFood from "../Page/manageFood/ManageFood";
 import NotFoundPage from "../Page/notFound/NotFound";
+import UpdatePage from "../Page/update/UpdatePage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<NotFoundPage></NotFoundPage>,
+    errorElement: <NotFoundPage></NotFoundPage>,
     children: [
       {
         path: "/",
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/Manage-My-Foods",
         element: <ManageFood></ManageFood>,
+      },
+      {
+        path: "/update-Food/:id",
+        element: <UpdatePage></UpdatePage>,
       },
       {
         path: "/Food-Request",

@@ -1,68 +1,124 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import useAuth from "../../hook/useAuth";
+import { useQuery } from "@tanstack/react-query";
+
 import useAxios from "../../hook/useAxios";
 import { Helmet } from "react-helmet-async";
-import toast from "react-hot-toast";
+import { useState } from "react";
+import ReactDatePicker from "react-datepicker";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const AddFood = () => {
-  const { user } = useAuth();
-  const axiosSecure = useAxios();
-  const [startDate, setStartDate] = useState(new Date());
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const img = form.img.value;
-    const FoodQuantity = form.FoodQuantity.value;
-    const PickupLocation = form.PickupLocation.value;
-    const AdditionalNotes = form.AdditionalNotes.value;
-    const expiredate = startDate;
-    const Status = "available";
-    const Doner_email = user?.email;
-    const Doner_name = user?.displayName;
-    const Doner_img = user?.photoURL;
-    const info = {
-      name,
-      img,
-      FoodQuantity,
-      PickupLocation,
-      AdditionalNotes,
-      expiredate,
-      Status,
-      Doner_email,
-      Doner_name,
-      Doner_img,
+const UpdatePage = () => {
+    const axiosSecure = useAxios();
+    const [startDate, setStartDate] = useState(new Date());
+    const {id}=useParams()
+
+  
+    const { data, error, isLoading } = useQuery({
+      queryKey: ['food'], 
+      queryFn: () => getData(), 
+    });
+
+   
+  console.log(data);
+    const getData = async () => {
+      try {
+        const res = await axiosSecure.get(`/food/${id}`);
+        return res.data;
+      } catch (error) {
+        throw new Error('Failed to fetch data');
+      }
     };
 
-    try {
-      const res = await axiosSecure.post("/addfood", info);
-      if (res.data) {
-        form.reset();
-        toast.success("Successfully added");
-      } else {
-        toast.error("Failed to add food");
-      }
-    } catch (error) {
-      toast.error(`Failed to add food ${error}`);
-    }
-  };
 
-  return (
-    <div className="flex justify-center items-center">
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const img = form.img.value;
+        const FoodQuantity = form.FoodQuantity.value;
+        const PickupLocation = form.PickupLocation.value;
+        const AdditionalNotes = form.AdditionalNotes.value;
+        const expiredate = startDate;
+        const info = {
+          name,
+          img,
+          FoodQuantity,
+          PickupLocation,
+          AdditionalNotes,
+          expiredate,
+        };
+        console.log(info);
+    
+       
+
+
+ 
+
+
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: "btn bg-[#E8751A] text-white",
+              cancelButton: "btn border-[#E8751A] text-[#E8751A] mr-2"
+            },
+            buttonsStyling: false
+          });
+          swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Update it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+
+
+              swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire({
+                title: "Cancelled",
+                text: "Your imaginary file is safe :)",
+                icon: "error"
+              });
+            }
+          });
+      };
+
+    
+
+
+      if (isLoading) return "Loading...";
+
+      if (error) return "An error has occurred: " + error.message;
+    
+
+
+
+
+    return (
+        <div className="flex justify-center items-center">
       <Helmet>
-        <title>Foodient | Add Food</title>
+        <title>Foodient | Update Food</title>
       </Helmet>
       <div className=" shadow-xl p-5 rounded-lg md:w-[90%]">
         <div className="flex justify-center items-center px-5">
           <h3 className="md:text-4xl text-2xl font-extrabold my-8 text-center pb-4 border-b-[#E8751A] border-b-2">
-            Add your Food
+            Update your Food
           </h3>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdate}>
           <div className=" grid md:grid-cols-2 grid-cols-1 gap-4">
             <div>
               <div className="form-control ">
@@ -74,7 +130,8 @@ const AddFood = () => {
                   name="name"
                   placeholder="Your item name"
                   className="input input-bordered"
-                  required
+                  
+                defaultValue={data.name}
                 />
               </div>
 
@@ -88,6 +145,7 @@ const AddFood = () => {
                   placeholder="use image URL"
                   className="input input-bordered"
                   required
+                  defaultValue={data.img}
                 />
               </div>
 
@@ -101,7 +159,7 @@ const AddFood = () => {
                     name="FoodQuantity"
                     placeholder="Food Quantity"
                     className="input input-bordered"
-                    required
+                    defaultValue={data.FoodQuantity}
                   />
                 </div>
 
@@ -114,7 +172,7 @@ const AddFood = () => {
                     name="PickupLocation"
                     placeholder="Pickup Location"
                     className="input input-bordered"
-                    required
+                    defaultValue={data.PickupLocation}
                   />
                 </div>
               </div>
@@ -126,9 +184,9 @@ const AddFood = () => {
                   <label className="label">
                     <span className="label-text">Expired Date/Time</span>
                   </label>
-                  <DatePicker
+                  <ReactDatePicker
                     className="border p-3 w-full rounded-lg text-center "
-                    selected={startDate}
+                    selected={data.expiredate}
                     onChange={(date) => setStartDate(date)}
                   />
                 </div>
@@ -138,7 +196,7 @@ const AddFood = () => {
                   </label>
                   <input
                     type="text"
-                    defaultValue={user?.email}
+                    defaultValue={data.Doner_email}
                     className="input input-bordered w-full  "
                     disabled
                   />
@@ -149,6 +207,7 @@ const AddFood = () => {
                   name="AdditionalNotes"
                   className="textarea textarea-bordered  w-full h-[150px]"
                   placeholder="Additional Notes"
+                  defaultValue={data.AdditionalNotes}
                 ></textarea>
               </div>
             </div>
@@ -160,7 +219,7 @@ const AddFood = () => {
         </form>
       </div>
     </div>
-  );
+    );
 };
 
-export default AddFood;
+export default UpdatePage;
