@@ -6,6 +6,7 @@ import Table from "./Table";
 import { useQuery } from '@tanstack/react-query';
 import Lottie from "lottie-react";
 import animetionLoading from '../../../public/loading.json'
+import { Helmet } from "react-helmet-async";
 
 const ManageFood = () => {
   const axiosSecure = useAxios();
@@ -75,6 +76,9 @@ const ManageFood = () => {
 
   return (
     <div className="overflow-x-auto">
+       <Helmet>
+        <title>Foodient | Manage My Food</title>
+      </Helmet>
       <table className="table">
         {/* head */}
         <thead>

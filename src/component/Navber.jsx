@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hook/useAuth";
+import { FaBowlFood } from "react-icons/fa6";
 
 const Navber = () => {
   const { user, logOut } = useAuth();
@@ -128,9 +129,9 @@ const Navber = () => {
             {nav}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl font-bold text-[#FF5400]">
-          Foodient
-        </a>
+        <Link to='/' className="btn btn-ghost text-xl font-bold text-[#FF5400]">
+        <FaBowlFood />Foodient
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{nav}</ul>
@@ -138,50 +139,26 @@ const Navber = () => {
 
       <div className="navbar-end">
         {user ? (
-          <div className="flex-none">
-            <div className="dropdown dropdown-end z-50">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    src={
-                      user.photoURL
-                        ? user.photoURL
-                        : "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
-                    }
-                  />
-                </div>
-              </div>
-              <div className="menu space-y-4 dropdown-content text-center  mt-3 z-[1]  p-2 shadow bg-base-100 rounded-box ">
-                <div className="avatar flex justify-center">
-                  <div className="w-14 rounded-full border-[#FF5400] border-2 ring-offset-base-100 ring-offset-2 p-1">
-                    <img className="rounded-full"
-                      src={
-                        user.photoURL
-                          ? user.photoURL
-                          : "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
-                      }
-                    />
-                  </div>
-                </div>
-                <div className=" font-bold">{user?.displayName}</div>
-                <div className="flex">
-                  <p>{user?.email}</p>
-                </div>
-                <div className="">
-                  <button
-                    className="w-full text-center p-2 rounded-lg text-white bg-[#FF5400]"
-                    onClick={() => logOut()}
-                  >
-                    Log out
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+         <div className="flex-none ">
+       
+         <div className="dropdown dropdown-end">
+           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+             <div className="w-10 rounded-full">
+               <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+             </div>
+           </div>
+           <ul tabIndex={0} className="mt-3 z-40 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box  w-64">
+             <li>
+               <a className="justify-between">
+                 Profile
+                 <span className="badge">New</span>
+               </a>
+             </li>
+             <li><a>Settings</a></li>
+             <li><a>Logout</a></li>
+           </ul>
+         </div>
+       </div>
         ) : (
           <div className="flex">
             <ul className="menu menu-horizontal px-1 gap-2">{navBtn}</ul>

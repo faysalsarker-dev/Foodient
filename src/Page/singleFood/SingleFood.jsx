@@ -4,6 +4,7 @@ import useAxios from "../../hook/useAxios";
 import { CiLocationOn } from "react-icons/ci";
 import Swal from "sweetalert2";
 import useAuth from "../../hook/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const SingleFood = () => {
   const { user } = useAuth();
@@ -211,6 +212,9 @@ const  Status= 'request'
   return (
     
     <div className="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border my-1">
+       <Helmet>
+        <title>Foodient | {data?.name || ''}</title>
+      </Helmet>
       <img className="rounded-lg" src={img} alt={name} />
       <div className="flex flex-col">
         <h1 className="text-2xl font-semibold">{name}</h1>

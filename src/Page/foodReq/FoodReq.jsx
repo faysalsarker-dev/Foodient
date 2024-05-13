@@ -1,6 +1,9 @@
 import useAuth from "./../../hook/useAuth";
 import useAxios from "../../hook/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
+import Lottie from "lottie-react";
+import animetionLoading from '../../../public/loading.json';
 
 const FoodReq = () => {
   const { user } = useAuth();
@@ -21,12 +24,15 @@ const FoodReq = () => {
     }
   };
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return   <div className="h-[80vh] flex justify-center items-center"> <Lottie className=" w-2/4" animationData={animetionLoading} loop={true} /></div>
 
   if (error) return "An error has occurred: " + error.message;
 
   return (
     <div>
+       <Helmet>
+        <title>Foodient | My Food Request </title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

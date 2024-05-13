@@ -36,15 +36,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/Manage-My-Foods",
-        element: <ManageFood></ManageFood>,
+        element: (
+          <RouterProtector>
+            <ManageFood></ManageFood>
+          </RouterProtector>
+        ),
       },
       {
         path: "/update-Food/:id",
-        element: <UpdatePage></UpdatePage>,
+        element: (
+          <RouterProtector>
+            <UpdatePage></UpdatePage>
+          </RouterProtector>
+        ),
       },
       {
         path: "/Food-Request",
-        element: <FoodReq></FoodReq>,
+        element: (
+          <RouterProtector>
+            <FoodReq></FoodReq>
+          </RouterProtector>
+        ),
       },
       {
         path: "/addfood",
