@@ -12,8 +12,8 @@ import Banner from "./Banner";
 
 const Slider = () => {
   return (
-    <div className='lg:h-[80vh] md:h-[40vh] sm:h-[40vh] h-[45vh] relative rounded-xl my-4'>
-    {/* Slider component */}
+    <div className='lg:h-[80vh] md:h-[40vh] sm:h-[40vh] h-[45vh] relative rounded-xl my-4 p-4'>
+   
 
     <div className='absolute inset-0 w-full h-full'>
       <Swiper
@@ -21,15 +21,28 @@ const Slider = () => {
       effect={"fade"}
       centeredSlides={true}
       autoplay={{
-        delay: 3000,
+        delay: 4000,
         disableOnInteraction: false,
       }}
       modules={[EffectFade, Autoplay]}
         className='w-full h-full'
       >
+            <SwiperSlide>
+          <div className="w-full h-full bg-cover bg-center rounded-lg" style={{ 
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/premium-photo/delicious-healthy-salad-floating-made-with-nutritious-ingredients-leafy-greens-vegetables-fruit_1030265-3075.jpg?w=826")`
+          }}>
+         
+       
+          </div>
+        </SwiperSlide>
+
+
+
+
+
         <SwiperSlide>
           <div className="w-full h-full bg-cover bg-center rounded-lg" style={{ 
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/flame-grilled-meat-cooking-flames-generative-ai_188544-12355.jpg?t=st=1715349204~exp=1715352804~hmac=4eeb984870a28841693b68ee914f4798595692217b0c99e5cf3f05f477968327&w=1060")`
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/premium-photo/delicious-healthy-salad-floating-made-with-nutritious-ingredients-leafy-greens-vegetables-fruit_1030265-3035.jpg?w=826")`
           }}>
             
        
@@ -41,21 +54,14 @@ const Slider = () => {
         
         <SwiperSlide>
           <div className="w-full h-full bg-cover bg-center rounded-lg" style={{ 
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/premium-photo/currywurst-is-fast-food-dish-german-origin_891336-60854.jpg?w=1060")`
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/premium-photo/photo-mix-vegetables-plate_941914-80.jpg?w=900")`
           }}>
          
        
           </div>
         </SwiperSlide>
         
-        <SwiperSlide>
-          <div className="w-full h-full bg-cover bg-center rounded-lg" style={{ 
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?t=st=1715349866~exp=1715353466~hmac=24d8bfdc167299ebc2b5d936efb77a5f09bcd8ae0d7771d126f68337b274f148&w=1060")`
-          }}>
-         
-       
-          </div>
-        </SwiperSlide>
+    
 
 
 

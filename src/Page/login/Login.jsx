@@ -79,7 +79,7 @@ const Login = () => {
         <title>Foodient | Login</title>
        
       </Helmet>
-            <div className="card  w-full  max-w-md  my-6">
+            <div className="card  w-full  max-w-md shadow-xl my-6">
                 <div className=" space-y-3">
                     <h2 className="text-center text-4xl font-bold">Welcome back</h2>
                     <h4 className="text-center text-slate-500">Enter your details to get sign in to your account.</h4>
@@ -109,7 +109,7 @@ const Login = () => {
                 </form>
 
                 <div className=" px-14 -mt-6"> <div className="divider">OR</div></div>
-                <div className="grid grid-cols-2 gap-3  px-8">
+                <div className="grid grid-cols-2 gap-3 mb-3 px-8">
 
                     <div onClick={google} className="flex gap-2 items-center text-center justify-center border border-black p-2  cursor-pointer" > <FaGoogle /> Google</div>
                     <div onClick={github} className="flex gap-2 items-center text-center justify-center border border-black p-2  cursor-pointer" > <FaGithub /> Github</div>

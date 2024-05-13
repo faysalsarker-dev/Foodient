@@ -1,6 +1,6 @@
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -21,6 +21,7 @@ const Register = () => {
     } =useAuth()
     const [toggle, setToggle] = useState(false)
     const [err, setErr] = useState(false)
+    const navigate =useNavigate()
 
     const [upper, setUpper] = useState(false)
     const [lower, setLower] = useState(false)
@@ -60,6 +61,7 @@ const Register = () => {
                     })
 
                 e.target.reset();
+                navigate('/')
             })
             .catch(error => {
                 setErr(error.message);
@@ -78,6 +80,7 @@ const Register = () => {
             .then(res => {
                 setUser(res.user);
                 toast.success('Google Register Successful ')
+                navigate('/')
              
             }).catch(err => {
                 setErr(err.massage)
@@ -93,6 +96,7 @@ const Register = () => {
             .then(res => {
                 setUser(res.user);
                 toast.success('Github Login Successful ')
+                navigate('/')
               
             }).catch(err => {
                 setErr(err.massage)
@@ -132,18 +136,7 @@ const Register = () => {
         <title>Foodient | Register</title>
        
       </Helmet>
-      <div className="bg-gray-100 p-8">
-      <h2 className="text-2xl font-bold mb-4">Join Foodient Today!</h2>
-      <p className="text-lg text-gray-700 mb-6">Ready to embark on a culinary adventure? Sign up now to join our vibrant community of food lovers, chefs, and enthusiasts!</p>
-      <p className="text-lg text-gray-700 mb-6">With Foodient, you can:</p>
-      <ul className="list-disc pl-6">
-        <li>Share your homemade delights with others</li>
-        <li>Donate surplus food to those in need</li>
-        <li>Request your favorite dishes from talented chefs</li>
-        <li>Connect with fellow foodies and explore diverse cuisines</li>
-      </ul>
-      <p className="text-lg text-gray-700 mt-4">Join us today and lets make a difference, one meal at a time!</p>
-    </div>
+  
              <div className="card  w-full max-w-md  my-6 shadow-xl p-2 ">
              
                 <form onSubmit={handleRegister} className="card-body">
@@ -198,17 +191,17 @@ const Register = () => {
                         </ul>
                     </div>
 
-                    <div className="form-control mt-6">
+                    <div className="form-control mt-3">
                         <button className="btn bg-[#FF5400]   text-white">Register</button>
                     </div>
                     <p>Already have on account <Link to='/login' className=" link link-hover text-primary">Login now</Link></p>
                 </form>
 
-                <div className=" px-14 -mt-4"> <div className="divider">OR</div></div>
-                <div className="grid grid-cols-2 gap-3  px-8">
+                <div className=" px-14 -mt-6"> <div className="divider">OR</div></div>
+                <div className="grid grid-cols-2 gap-3 mb-3 px-8">
 
-                    <div onClick={handleGoogle} className="flex gap-2 items-center text-center justify-center border border-[#FF5400] text-[#FF5400]  p-2  cursor-pointer" > <FaGoogle /> Google</div>
-                    <div onClick={handleGithub} className="flex gap-2 items-center text-center justify-center border border-[#FF5400] text-[#FF5400] p-2  cursor-pointer" > <FaGithub /> Github</div>
+                    <div onClick={handleGoogle} className="flex gap-2 items-center text-center justify-center border border-black    p-2  cursor-pointer" > <FaGoogle /> Google</div>
+                    <div onClick={handleGithub} className="flex gap-2 items-center text-center justify-center  border border-black  p-2  cursor-pointer" > <FaGithub /> Github</div>
 
                 </div>
             </div>
