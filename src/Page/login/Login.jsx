@@ -89,30 +89,30 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" name="email" placeholder="email" className="input border-[#6D31ED] rounded-full" required />
+                        <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                     <span className="label-text my-2">Password</span>
-                        <label className="input border-[#6D31ED] rounded-full flex items-center gap-2">
+                        <label className="input input-bordered flex items-center gap-2">
                         
                             <input type={`${toggle?'text':'password'}`} className=" grow" required placeholder="Password" name="password" />
                         <div onClick={()=> setToggle(!toggle)}>{toggle? <FaRegEye className="text-xl" />:<FaRegEyeSlash className="text-xl" />}</div>
                         </label>
                         {err === 'Firebase: Error (auth/email-already-in-use).' ?
 
-                                <span className="text-red-500">This email already have on account</span> : <span className="text-red-500">{err}</span>}
+                                <span className="text-red-600">This email already have on account</span> : <span className="text-red-600">{err}</span>}
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-[#6D31ED] rounded-full text-white">Login</button>
+                        <button className="btn bg-[#FF5400]  text-white">Login</button>
                     </div>
                     <p>New hare <Link to='/register' className=" link link-hover text-primary">Register now</Link></p>
                 </form>
 
-                <div className=" px-14 "> <div className="divider">OR</div></div>
+                <div className=" px-14 -mt-6"> <div className="divider">OR</div></div>
                 <div className="grid grid-cols-2 gap-3  px-8">
 
-                    <div onClick={google} className="flex gap-2 items-center text-center justify-center border border-black p-2 rounded-full cursor-pointer" > <FaGoogle /> Google</div>
-                    <div onClick={github} className="flex gap-2 items-center text-center justify-center border border-black p-2 rounded-full cursor-pointer" > <FaGithub /> Github</div>
+                    <div onClick={google} className="flex gap-2 items-center text-center justify-center border border-black p-2  cursor-pointer" > <FaGoogle /> Google</div>
+                    <div onClick={github} className="flex gap-2 items-center text-center justify-center border border-black p-2  cursor-pointer" > <FaGithub /> Github</div>
 
                 </div>
             </div>
