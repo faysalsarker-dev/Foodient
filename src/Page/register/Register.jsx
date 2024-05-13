@@ -127,15 +127,23 @@ const Register = () => {
 
 
     return (
-        <div className="flex justify-center flex-col items-center my-5">
+        <div className="flex justify-center gap-4 items-center my-5">
                   <Helmet>
         <title>Foodient | Register</title>
        
       </Helmet>
-               <div className=" space-y-3">
-                    <h2 className="text-center text-4xl font-extrabold">Welcome</h2>
-                    <h4 className="text-center text-slate-500">Enter your details to get register a account.</h4>
-                </div>
+      <div className="bg-gray-100 p-8">
+      <h2 className="text-2xl font-bold mb-4">Join Foodient Today!</h2>
+      <p className="text-lg text-gray-700 mb-6">Ready to embark on a culinary adventure? Sign up now to join our vibrant community of food lovers, chefs, and enthusiasts!</p>
+      <p className="text-lg text-gray-700 mb-6">With Foodient, you can:</p>
+      <ul className="list-disc pl-6">
+        <li>Share your homemade delights with others</li>
+        <li>Donate surplus food to those in need</li>
+        <li>Request your favorite dishes from talented chefs</li>
+        <li>Connect with fellow foodies and explore diverse cuisines</li>
+      </ul>
+      <p className="text-lg text-gray-700 mt-4">Join us today and lets make a difference, one meal at a time!</p>
+    </div>
              <div className="card  w-full max-w-md  my-6 shadow-xl p-2 ">
              
                 <form onSubmit={handleRegister} className="card-body">
@@ -191,7 +199,7 @@ const Register = () => {
                     </div>
 
                     <div className="form-control mt-6">
-                        <button className="btn bg-[#F0273B]  text-white">Register</button>
+                        <button className="btn bg-[#FF5400]   text-white">Register</button>
                     </div>
                     <p>Already have on account <Link to='/login' className=" link link-hover text-primary">Login now</Link></p>
                 </form>
@@ -199,8 +207,8 @@ const Register = () => {
                 <div className=" px-14 -mt-4"> <div className="divider">OR</div></div>
                 <div className="grid grid-cols-2 gap-3  px-8">
 
-                    <div onClick={handleGoogle} className="flex gap-2 items-center text-center justify-center border border-black p-2  cursor-pointer" > <FaGoogle /> Google</div>
-                    <div onClick={handleGithub} className="flex gap-2 items-center text-center justify-center border border-black p-2  cursor-pointer" > <FaGithub /> Github</div>
+                    <div onClick={handleGoogle} className="flex gap-2 items-center text-center justify-center border border-[#FF5400] text-[#FF5400]  p-2  cursor-pointer" > <FaGoogle /> Google</div>
+                    <div onClick={handleGithub} className="flex gap-2 items-center text-center justify-center border border-[#FF5400] text-[#FF5400] p-2  cursor-pointer" > <FaGithub /> Github</div>
 
                 </div>
             </div>

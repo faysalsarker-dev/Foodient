@@ -41,6 +41,15 @@ const Slider = () => {
         
         <SwiperSlide>
           <div className="w-full h-full bg-cover bg-center rounded-lg" style={{ 
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/premium-photo/currywurst-is-fast-food-dish-german-origin_891336-60854.jpg?w=1060")`
+          }}>
+         
+       
+          </div>
+        </SwiperSlide>
+        
+        <SwiperSlide>
+          <div className="w-full h-full bg-cover bg-center rounded-lg" style={{ 
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?t=st=1715349866~exp=1715353466~hmac=24d8bfdc167299ebc2b5d936efb77a5f09bcd8ae0d7771d126f68337b274f148&w=1060")`
           }}>
          
