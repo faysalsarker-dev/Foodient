@@ -129,8 +129,9 @@ const Navber = () => {
             {nav}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost text-xl font-bold text-[#FF5400]">
-        <FaBowlFood />Foodient
+        <Link to="/" className="btn btn-ghost text-xl font-bold text-[#FF5400]">
+          <FaBowlFood />
+          Foodient
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -139,26 +140,71 @@ const Navber = () => {
 
       <div className="navbar-end">
         {user ? (
-         <div className="flex-none ">
-       
-         <div className="dropdown dropdown-end">
-           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-             <div className="w-10 rounded-full">
-               <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
-             </div>
-           </div>
-           <ul tabIndex={0} className="mt-3 z-40 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box  w-64">
-             <li>
-               <a className="justify-between">
-                 Profile
-                 <span className="badge">New</span>
-               </a>
-             </li>
-             <li><a>Settings</a></li>
-             <li><a>Logout</a></li>
-           </ul>
-         </div>
-       </div>
+
+<div className="flex-none ">
+<div className="dropdown dropdown-end">
+  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+    <div className="w-10 rounded-full">
+    <img src={user.photoURL ? user.photoURL : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+    </div>
+  </div>
+  <div tabIndex={0} className="mt-3 z-40  text-center p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-64">
+    
+    <div className="avatar flex justify-center">
+                  <div className="w-14 mt-2 rounded-full ring ring-[#FF5400] ring-offset-base-100 ring-offset-2">
+                  <img src={user.photoURL ? user.photoURL : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+              </div>
+               </div>
+   
+    <div className="mt-2">{user?.displayName}</div>
+    <div className="mt-2">{user?.email}</div>
+    <div><button className="bg-[#FF5400] mt-3 text-center w-full rounded-lg p-2 text-white" onClick={()=>(logOut(),console.log('logout'))}>Logout</button></div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+          // <div className="flex-none ">
+          //   <div className="dropdown dropdown-end">
+          //     <div
+          //       tabIndex={0}
+          //       role="button"
+          //       className="btn btn-ghost btn-circle avatar"
+          //     >
+          //       <div className="w-10 rounded-full">
+          //         <img
+          //           alt="Tailwind CSS Navbar component"
+          //           src={user?.photoURL}
+          //         />
+          //       </div>
+          //     </div>
+          //     <ul
+          //       tabIndex={0}
+          //       className="mt-3 z-40 text-center space-y-2 p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box  w-64"
+          //     >
+          //      
+
+          //       <div>
+          //       {user.displayName === null ? 'User name is not found' : user.displayName}
+          //       </div>
+          //       <div>
+          //         {user?.email}
+          //       </div>
+          //       <li>
+          //         <button className="" >Log Out</button>
+          //       </li>
+
+
+
+          //     </ul>
+          //   </div>
+          // </div>
         ) : (
           <div className="flex">
             <ul className="menu menu-horizontal px-1 gap-2">{navBtn}</ul>
