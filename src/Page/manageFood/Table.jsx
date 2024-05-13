@@ -33,14 +33,14 @@ const Table = ({ tble, handleDelete }) => {
         <td className="  text-center">
       
           <Link to={`/update-Food/${tble._id}`}>
-            <button className="btn text-white bg-[#E8751A]">Update</button>
+            <button className="btn text-white bg-[#FF5400]">Update</button>
           </Link>
         </td>
 
         <td className="flex justify-center ">
           <button
             onClick={() => handleDelete(tble._id)}
-            className="btn border-[#E8751A] bg-[#ffffff30] text-[#E8751A]"
+            className="btn border-[#FF5400] bg-[#ffffff30] text-[#FF5400]"
           >
             Delete
           </button>

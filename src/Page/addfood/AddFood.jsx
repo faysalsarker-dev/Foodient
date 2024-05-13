@@ -16,7 +16,7 @@ const AddFood = () => {
     const form = e.target;
     const name = form.name.value;
     const img = form.img.value;
-    const FoodQuantity = form.FoodQuantity.value;
+    const FoodQuantity = parseInt(form.FoodQuantity.value);
     const PickupLocation = form.PickupLocation.value;
     const AdditionalNotes = form.AdditionalNotes.value;
     const expiredate = startDate;
@@ -57,7 +57,7 @@ const AddFood = () => {
       </Helmet>
       <div className=" shadow-xl p-5 rounded-lg md:w-[90%]">
         <div className="flex justify-center items-center px-5">
-          <h3 className="md:text-4xl text-2xl font-extrabold my-8 text-center pb-4 border-b-[#E8751A] border-b-2">
+          <h3 className="md:text-4xl text-2xl font-extrabold my-8 text-center pb-4 border-b-[#FF5400] border-b-2">
             Add your Food
           </h3>
         </div>
@@ -154,7 +154,7 @@ const AddFood = () => {
             </div>
           </div>
 
-          <button className="w-full btn bg-[#E8751A] mt-5 text-white">
+          <button className="w-full btn bg-[#FF5400] mt-5 text-white">
             Add Food
           </button>
         </form>

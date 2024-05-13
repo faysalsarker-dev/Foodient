@@ -1,23 +1,21 @@
-import  {  useState } from "react";
+import  { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useAxios from "../../hook/useAxios";
 import Card from "../../component/Card";
 import { useQuery } from "@tanstack/react-query";
+import Lottie from "lottie-react";
+import animetionLoading from '../../../public/loading.json'
+
+
 
 const AvailableFood = () => {
- 
   const [layout, setLayout] = useState(false);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
 
   const axiosSecure = useAxios();
 
-
-  const { data, error, isLoading ,refetch} = useQuery({
-    queryKey: ['available'], 
-    queryFn: () => getData(), 
-  });
-
+  
   const getData = async () => {
     try {
       const res = await axiosSecure.get(`/Available-Foods?search=${search}&sort=${sort}`);
@@ -27,31 +25,19 @@ const AvailableFood = () => {
     }
   };
 
-
-
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axiosSecure.get(
-  //         `/Available-Foods?search=${search}&sort=${sort}`
-  //       );
-  //       setData(res.data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch data:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [axiosSecure, search, sort]);
+  const { data=[], error, isLoading, refetch } = useQuery({
+    queryKey: ['available'], 
+    queryFn: getData, 
+  });
 
   const handleSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.searchinput.value);
-    refetch()
+    refetch();
   };
 
-  if (isLoading) return "Loading...";
+
+  if (isLoading) return   <div className="h-[80vh] flex justify-center items-center"> <Lottie className=" w-2/4" animationData={animetionLoading} loop={true} /></div>
 
   if (error) return "An error has occurred: " + error.message;
   return (
@@ -63,8 +49,13 @@ const AvailableFood = () => {
         <div>
           <select
             className="select select-bordered w-full max-w-xs"
-            onChange={(e) =>( setSort(e.target.value),refetch())}
+            onChange={(e) => {
+              setSort(e.target.value);
+              refetch();
+            }}
+            defaultValue={sort}
           >
+            <option value="" disabled>Filter By expire Date</option>
             <option value="descending">Descending</option>
             <option value="ascending">Ascending</option>
           </select>
@@ -78,14 +69,14 @@ const AvailableFood = () => {
                 className="flex-1"
                 placeholder="Search by Food name"
               />
-              <button className="bg-[#E8751A] flex justify-center rounded-e-full py-3 text-white flex-1">
+              <button type="submit" className="bg-[#FF5400] flex justify-center rounded-e-full py-3 text-white flex-1">
                 Search
               </button>
             </label>
           </form>
         </div>
         <div>
-          <button className="btn" onClick={() => (setLayout(!layout))}>
+          <button className="btn" onClick={() => setLayout(!layout)}>
             Change layout
           </button>
         </div>
@@ -93,10 +84,10 @@ const AvailableFood = () => {
 
       <div
         className={`grid ${
-          layout ?"lg:grid-cols-2" :"lg:grid-cols-3"
+          layout ? "lg:grid-cols-2" : "lg:grid-cols-3"
         } md:grid-cols-2 grid-cols-1 gap-4 my-8`}
       >
-        {data.map((pd) => (
+        {data?.map((pd) => (
           <Card key={pd._id} pd={pd}></Card>
         ))}
       </div>

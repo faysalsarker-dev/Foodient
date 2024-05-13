@@ -29,7 +29,7 @@ const Card = ({pd}) => {
             </div>
           </div>
           <div className="badge  ">
-            <Link to={`/food/${_id}`}><button className="btn text-white bg-[#E8751A]">View Detail</button></Link>
+            <Link to={`/food/${_id}`}><button className="btn text-white bg-[#FF5400]">View Detail</button></Link>
           </div>
         </div>
         </div>

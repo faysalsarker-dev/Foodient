@@ -4,7 +4,8 @@ import useAuth from "../../hook/useAuth";
 import Swal from "sweetalert2";
 import Table from "./Table";
 import { useQuery } from '@tanstack/react-query';
-
+import Lottie from "lottie-react";
+import animetionLoading from '../../../public/loading.json'
 
 const ManageFood = () => {
   const axiosSecure = useAxios();
@@ -24,6 +25,13 @@ const ManageFood = () => {
       throw new Error('Failed to fetch data');
     }
   };
+
+
+
+
+
+
+
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -59,7 +67,9 @@ const ManageFood = () => {
     });
   };
 
-  if (isLoading) return "Loading...";
+   if(isLoading){
+        return   <div className="h-[80vh] flex justify-center items-center"> <Lottie className=" w-2/4" animationData={animetionLoading} loop={true} /></div>
+    }
 
   if (error) return "An error has occurred: " + error.message;
 

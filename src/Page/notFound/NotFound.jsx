@@ -16,7 +16,7 @@ const NotFoundPage = () => {
         </p>
         <div className="flex justify-center space-x-4">
           <button
-            className="flex items-center border-[#E8751A] border  text-[#E8751A] font-semibold px-4 py-2 rounded-lg focus:outline-none"
+            className="flex items-center border-[#FF5400] border  text-[#FF5400] font-semibold px-4 py-2 rounded-lg focus:outline-none"
             onClick={()=> navigate()-1}
           >
            
@@ -25,7 +25,7 @@ const NotFoundPage = () => {
           </button>
       <Link to='/'>
               <button
-                className="flex items-center bg-[#E8751A]  text-white font-semibold px-4 py-2 rounded-lg focus:outline-none"
+                className="flex items-center bg-[#FF5400]  text-white font-semibold px-4 py-2 rounded-lg focus:outline-none"
                 
               >
                 

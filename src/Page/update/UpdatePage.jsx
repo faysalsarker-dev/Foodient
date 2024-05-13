@@ -1,119 +1,123 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import useAxios from "../../hook/useAxios";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-
-
+import animetionLoading from '../../../public/loading.json'
+import Lottie from "lottie-react";
 const UpdatePage = () => {
-    const axiosSecure = useAxios();
-    const [startDate, setStartDate] = useState(new Date());
-    const {id}=useParams()
+  const axiosSecure = useAxios();
+  const [startDate, setStartDate] = useState(new Date());
+  const { id } = useParams();
+  const navigate = useNavigate()
 
-  
-    const { data, error, isLoading } = useQuery({
-      queryKey: ['food'], 
-      queryFn: () => getData(), 
-    });
-
-   
-  console.log(data);
-    const getData = async () => {
-      try {
-        const res = await axiosSecure.get(`/food/${id}`);
-        return res.data;
-      } catch (error) {
-        throw new Error('Failed to fetch data');
-      }
-    };
-
-
-    const handleUpdate = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const img = form.img.value;
-        const FoodQuantity = form.FoodQuantity.value;
-        const PickupLocation = form.PickupLocation.value;
-        const AdditionalNotes = form.AdditionalNotes.value;
-        const expiredate = startDate;
-        const info = {
-          name,
-          img,
-          FoodQuantity,
-          PickupLocation,
-          AdditionalNotes,
-          expiredate,
-        };
-        console.log(info);
-    
-       
-
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["food"],
+    queryFn: () => getData(),
+  });
 
  
+  const getData = async () => {
+    try {
+      const res = await axiosSecure.get(`/food/${id}`);
+      return res.data;
+    } catch (error) {
+      throw new Error("Failed to fetch data");
+    }
+  };
 
-
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-              confirmButton: "btn bg-[#E8751A] text-white",
-              cancelButton: "btn border-[#E8751A] text-[#E8751A] mr-2"
-            },
-            buttonsStyling: false
-          });
+  const { mutateAsync } = useMutation({
+    mutationFn: async (info) => {
+      const { data } = await axiosSecure.patch(`/update/${id}`, info);
+      return data; 
+    },
+    onSuccess: () => {
+      console.log('update done');
+      navigate('/Manage-My-Foods')
+    }
+  });
+  
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const img = form.img.value;
+    const FoodQuantity = parseInt(form.FoodQuantity.value);
+    const PickupLocation = form.PickupLocation.value;
+    const AdditionalNotes = form.AdditionalNotes.value;
+    const expiredate = startDate;
+    const info = {
+      name,
+      img,
+      FoodQuantity,
+      PickupLocation,
+      AdditionalNotes,
+      expiredate,
+    };
+  
+    console.log(info);
+  
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn bg-[#FF5400] text-white",
+        cancelButton: "btn border-[#FF5400] text-[#FF5400] mr-2",
+      },
+      buttonsStyling: false,
+    });
+  
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Update it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await mutateAsync(info);
+            swalWithBootstrapButtons.fire({
+              title: "Updated!",
+              text: "Your data has been updated.",
+              icon: "success",
+            });
+          } catch (error) {
+            console.error("Error updating data:", error);
+            swalWithBootstrapButtons.fire({
+              title: "Error",
+              text: "An error occurred while updating data.",
+              icon: "error",
+            });
+          }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, Update it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) {
-
-
-
-              swalWithBootstrapButtons.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            } else if (
-              /* Read more about handling dismissals below */
-              result.dismiss === Swal.DismissReason.cancel
-            ) {
-              swalWithBootstrapButtons.fire({
-                title: "Cancelled",
-                text: "Your imaginary file is safe :)",
-                icon: "error"
-              });
-            }
+            title: "Cancelled",
+            text: "Your operation has been cancelled.",
+            icon: "error",
           });
-      };
+        }
+      });
+  };
+  
 
-    
+  if (isLoading) return   <div className="h-[80vh] flex justify-center items-center"> <Lottie className=" w-2/4" animationData={animetionLoading} loop={true} /></div>
 
+  if (error) return "An error has occurred: " + error.message;
 
-      if (isLoading) return "Loading...";
-
-      if (error) return "An error has occurred: " + error.message;
-    
-
-
-
-
-    return (
-        <div className="flex justify-center items-center">
+  return (
+    <div className="flex justify-center items-center">
       <Helmet>
         <title>Foodient | Update Food</title>
       </Helmet>
       <div className=" shadow-xl p-5 rounded-lg md:w-[90%]">
         <div className="flex justify-center items-center px-5">
-          <h3 className="md:text-4xl text-2xl font-extrabold my-8 text-center pb-4 border-b-[#E8751A] border-b-2">
+          <h3 className="md:text-4xl text-2xl font-extrabold my-8 text-center pb-4 border-b-[#FF5400] border-b-2">
             Update your Food
           </h3>
         </div>
@@ -130,8 +134,7 @@ const UpdatePage = () => {
                   name="name"
                   placeholder="Your item name"
                   className="input input-bordered"
-                  
-                defaultValue={data.name}
+                  defaultValue={data.name}
                 />
               </div>
 
@@ -186,7 +189,8 @@ const UpdatePage = () => {
                   </label>
                   <ReactDatePicker
                     className="border p-3 w-full rounded-lg text-center "
-                    selected={data.expiredate}
+                    selected={startDate}
+                    defaultValue={data.expiredate}
                     onChange={(date) => setStartDate(date)}
                   />
                 </div>
@@ -213,13 +217,13 @@ const UpdatePage = () => {
             </div>
           </div>
 
-          <button className="w-full btn bg-[#E8751A] mt-5 text-white">
+          <button className="w-full btn bg-[#FF5400] mt-5 text-white">
             Add Food
           </button>
         </form>
       </div>
     </div>
-    );
+  );
 };
 
 export default UpdatePage;

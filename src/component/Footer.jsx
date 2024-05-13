@@ -3,7 +3,7 @@ import { FaFacebook, FaGithub, FaInstagram } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
-      <footer className="footer footer-center bg-neutral text-neutral-content  mt-16  rounded">
+      <footer className="footer footer-center bg-[#F3F3F3] text-neutral-content  mt-16  rounded">
       <nav className="grid grid-flow-col gap-4 border">
     
              
