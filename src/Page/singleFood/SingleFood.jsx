@@ -182,7 +182,7 @@ const  Status= 'request'
       <textarea 
         class="textarea textarea-bordered" 
         placeholder="${AdditionalNotes}"
-        disabled
+        
       ></textarea>
     </div>
     </div>

@@ -148,7 +148,7 @@ const Navber = () => {
     <img src={user.photoURL ? user.photoURL : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
     </div>
   </div>
-  <div tabIndex={0} className="mt-3 z-40  text-center p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-64">
+  <div tabIndex={0} className="mt-3 z-40  text-center p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
     
     <div className="avatar flex justify-center">
                   <div className="w-14 mt-2 rounded-full ring ring-[#FF5400] ring-offset-base-100 ring-offset-2">
@@ -158,7 +158,7 @@ const Navber = () => {
    
     <div className="mt-2">{user?.displayName}</div>
     <div className="mt-2">{user?.email}</div>
-    <div><button className="bg-[#FF5400] mt-3 text-center w-full rounded-lg p-2 text-white" onClick={()=>(logOut(),console.log('logout'))}>Logout</button></div>
+    <div className="z-50"><button className="bg-[#FF5400] mt-3 text-center w-full rounded-lg p-2 text-white" onClick={()=>(logOut(),console.log('logout'))}>Logout</button></div>
   </div>
 </div>
 </div>

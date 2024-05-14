@@ -7,6 +7,8 @@ import animetionLoading from "../../../public/loading.json";
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
 
+import { motion } from "framer-motion";
+
 const Home = () => {
   const axiosSecure = useAxios();
 
@@ -35,13 +37,26 @@ const Home = () => {
       </Helmet>
       <Slider></Slider>
 
-      <div className=" mt-20 flex justify-center">
+      {/* <.div
+          
+        >
+         
+        </.div> */}
+
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }} // Start from slightly below the viewport
+        animate={{ opacity: 1, y: 0 }} // Animate to opacity 1 and y position 0
+        transition={{ duration: 0.5, delay: 1.1 }} // Adjust duration and delay as needed
+      
+      
+      className=" mt-20 flex justify-center">
         <div className="border-b-[#FF5400] border-b-2 pb-3">
           <h3 className="text-3xl font-extrabold text-center">
             Featured Foods
           </h3>
         </div>
-      </div>
+      </motion.div>
       {isLoading && (
         <div className="h-[80vh]  flex justify-center items-center">
           <Lottie
