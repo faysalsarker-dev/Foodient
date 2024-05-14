@@ -10,7 +10,7 @@ const AddFood = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const [startDate, setStartDate] = useState(new Date());
-
+  const Status = "available";
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,7 +20,7 @@ const AddFood = () => {
     const PickupLocation = form.PickupLocation.value;
     const AdditionalNotes = form.AdditionalNotes.value;
     const expiredate = startDate;
-    const Status = "available";
+
     const Doner_email = user?.email;
     const Doner_name = user?.displayName;
     const Doner_img = user?.photoURL;
@@ -117,12 +117,20 @@ const AddFood = () => {
                     required
                   />
                 </div>
-              </div>
-            </div>
 
-            <div className="flex flex-col">
-              <div className=" grid grid-cols-2 gap-3">
-                <div className="form-control ">
+                <div className="form-control -mt-6">
+                  <label className="label">
+                    <span className="label-text">Status</span>
+                  </label>
+                  <input
+                    type="text"
+                    defaultValue={Status}
+                    className="input input-bordered w-full  "
+                    disabled
+                  />
+                </div>
+
+                <div className="form-control -mt-6">
                   <label className="label">
                     <span className="label-text">Expired Date/Time</span>
                   </label>
@@ -132,7 +140,30 @@ const AddFood = () => {
                     onChange={(date) => setStartDate(date)}
                   />
                 </div>
-                <div className="form-control ">
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+       
+
+
+
+
+              <div className=" grid grid-cols-1 gap-2">
+
+              <div className="mt-5 flex gap-5 ml-3 ">
+                  <div className="avatar">
+                    <div className="w-12 rounded-full ring ring-[#FF5400] ring-offset-base-100 ring-offset-2">
+                      <img src={user?.photoURL} />
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-sm opacity-50">Doner name</span>
+                    <h3>{user?.displayName}</h3>
+                  </div>
+                </div>
+
+                <div className="form-control mt-2">
                   <label className="label">
                     <span className="label-text">Doner Email</span>
                   </label>
@@ -143,8 +174,11 @@ const AddFood = () => {
                     disabled
                   />
                 </div>
+
+                
               </div>
-              <div className=" mt-10">
+
+              <div className=" mt-14">
                 <textarea
                   name="AdditionalNotes"
                   className="textarea textarea-bordered  w-full h-[150px]"

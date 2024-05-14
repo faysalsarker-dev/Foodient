@@ -28,7 +28,7 @@ const HomeCard = ({ pd}) => {
         <p>{new Date(expiredate).toLocaleString()}</p>
         <p>
           <span className=" font-semibold">Notes:</span>
-          {AdditionalNotes.slice(0, 50)}...
+          {AdditionalNotes.slice(0, 55)}...
         </p>
         <div className="flex gap-2">
           <div>Quantity:{FoodQuantity}</div>

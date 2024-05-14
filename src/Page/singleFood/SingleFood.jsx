@@ -1,29 +1,41 @@
-import { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 import useAxios from "../../hook/useAxios";
 import { CiLocationOn } from "react-icons/ci";
 import Swal from "sweetalert2";
 import useAuth from "../../hook/useAuth";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
+import Lottie from "lottie-react";
+import animetionLoading from "../../../public/loading.json";
 
 const SingleFood = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxios();
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axiosSecure.get(`/food/${id}`).then((res) => {
-      console.log(res.data);
-      setData(res.data);
-    });
-  }, [id, axiosSecure]);
 
 
 
 
 
+  const getData = async () => {
+    try {
+      const res = await axiosSecure.get(`/food/${id}`);
+      return res.data;
+    } catch (error) {
+      throw new Error("Failed to fetch data");
+    }
+  };
 
+  const {
+    data,
+    error,
+    isLoading,
+   
+  } = useQuery({
+    queryKey: ["Single-Food-details"],
+    queryFn: getData,
+  });
 
   const {
     _id,
@@ -35,7 +47,8 @@ const SingleFood = () => {
     expiredate,
     Doner_name,
     Doner_email,
-  } = data;
+    Doner_img,
+  } = data || {};
 
 
 const  Status= 'request'
@@ -49,8 +62,7 @@ const  Status= 'request'
       now.getMonth() + 1
     }/${now.getDate()}/${now.getFullYear()}, ${now.getHours() % 12 || 12}:${
       (now.getMinutes() < 10 ? "0" : "") + now.getMinutes()
-    }:${(now.getSeconds() < 10 ? "0" : "") + now.getSeconds()} ${
-      now.getHours() >= 12 ? "PM" : "AM"
+    
     }`;
     const info = {
       _id,
@@ -209,23 +221,36 @@ const  Status= 'request'
   
   };
 
+  if (isLoading)
+    return (
+      <div className="h-[80vh] flex justify-center items-center">
+        <Lottie
+          className=" w-2/4"
+          animationData={animetionLoading}
+          loop={true}
+        />
+      </div>
+    );
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     
-    <div className="grid grid-cols-2 gap-4 rounded-lg shadow-xl p-4 border my-1">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-4 rounded-lg shadow-xl p-4 border my-1">
        <Helmet>
         <title>Foodient | {data?.name || ''}</title>
       </Helmet>
       <img className="rounded-lg" src={img} alt={name} />
-      <div className="flex flex-col">
-        <h1 className="text-2xl font-semibold">{name}</h1>
-        <p>{new Date(expiredate).toLocaleString()}</p>
-        <p>
+      <div className="flex flex-col gap-3">
+        <h1 className="text-3xl font-bold">{name}</h1>
+        <p>Expired Date : {new Date(expiredate).toLocaleString()}</p>
+        <p className="my-7">
           <span className="font-semibold">Notes:</span>
           {AdditionalNotes}
         </p>
         <div className="flex gap-2">
-          <div>Quantity:{FoodQuantity}</div>
-          <div className="flex items-center">
+          <div className="badge border-[#FF5400] shadow-2xl">Quantity:{FoodQuantity}</div>
+          <div className="flex items-center badge border-[#FF5400] shadow-2xl">
             <CiLocationOn />
             {PickupLocation}
           </div>
@@ -234,7 +259,7 @@ const  Status= 'request'
           <div className="flex items-center gap-2">
             <div className="avatar">
               <div className="w-8 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={Doner_img} />
               </div>
             </div>
             <div>{Doner_name}</div>

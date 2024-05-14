@@ -57,6 +57,10 @@ const Home = () => {
         ))}
       </div>
 
+      <div className="flex justify-center my-6">
+       <Link to='/availablefoods'> <button className="btn bg-[#FF5400] text-white font-bold">Show All Food</button></Link>
+      </div>
+
 <div className="bg-[#8e5234] h-[400px] my-20 rounded-lg  bg-contain bg-center" style={{ 
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://img.freepik.com/premium-photo/currywurst-is-fast-food-dish-german-origin_891336-60854.jpg?w=1060")`
           }}>
