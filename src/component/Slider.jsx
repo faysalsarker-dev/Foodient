@@ -69,7 +69,7 @@ const Slider = () => {
       </Swiper>
     </div>
     {/* Banner component */}
-    <div className="absolute  top-1/4 left-0 right-0 z-50 ">
+    <div className="absolute  top-1/4 left-0 right-0  z-10 ">
       <Banner />
     </div>
   </div>

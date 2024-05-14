@@ -85,107 +85,7 @@ const  Status= 'request'
       text: "You won't be able to revert this!",
       icon: "warning",
       html: `
-    <div class="grid grid-cols-2 gap-2">
-      <img src="${img}" class="col-span-2 rounded-xl p-2" alt="" />
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Food Name</span>
-        </label>
-        <input
-          type="text"
-          value="${name}"
-          class="input input-bordered text-black"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Food ID</span>
-        </label>
-        <input
-          type="text"
-          value="${_id}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Pickup Location</span>
-        </label>
-        <input
-          type="text"
-          value="${PickupLocation}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Expire Date</span>
-        </label>
-        <input
-          type="text"
-          value="${new Date(expiredate).toLocaleString()}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Donator Name</span>
-        </label>
-        <input
-          type="text"
-          value="${Doner_name}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Donator Email</span>
-        </label>
-        <input
-          type="text"
-          value="${Doner_email}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">User Email</span>
-        </label>
-        <input
-          type="text"
-          value="${user?.email}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Request Date</span>
-        </label>
-        <input
-          type="text"
-          value="${formattedTime}"
-          class="input input-bordered"
-          disabled
-        />
-      </div>
-      <div class="form-control col-span-2">
-      <label class="label">
-        <span class="label-text">Additional Notes</span>
-      </label>
-      <textarea 
-        class="textarea textarea-bordered" 
-        placeholder="${AdditionalNotes}"
-        
-      ></textarea>
-    </div>
-    </div>
+    
     `,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -271,6 +171,143 @@ const  Status= 'request'
           </div>
         </div>
       </div>
+
+
+{/* Open the modal using document.getElementById('ID').showModal() method */}
+<button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box">
+  <div className="grid grid-cols-2 gap-2">
+    <div> <img src={img} className=" rounded-xl p-2" alt="" /></div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Food Name</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={name}
+        className="input input-bordered text-black"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Food ID</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={_id}
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Pickup Location</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={PickupLocation}
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Expire Date</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={new Date(expiredate).toLocaleString()}
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Donator Name</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={Doner_name}
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Donator Email</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={Doner_email}
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">User Email</span>
+      </label>
+      <input
+        type="text"
+        defaultValue={user?.email}
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Request Date</span>
+      </label>
+      <input
+        type="text"
+        
+        className="input input-bordered"
+        disabled
+      />
+    </div>
+    <div className="form-control col-span-2">
+      <label className="label">
+        <span className="label-text">Additional Notes</span>
+      </label>
+      <textarea
+        className="textarea textarea-bordered"
+        placeholder={AdditionalNotes}
+      ></textarea>
+    </div>
+  </div>
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 };

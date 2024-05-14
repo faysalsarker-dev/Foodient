@@ -79,7 +79,7 @@ const Footer = () => {
           <FaBowlFood />
           Foodient
         </Link>
-  <nav className="grid grid-flow-col gap-4">
+  <nav className="flex flex-wrap justify-center gap-4">
 {nav}
         
   </nav> 
