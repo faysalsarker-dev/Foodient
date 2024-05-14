@@ -10,6 +10,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { motion } from "framer-motion";
 
 import { CiUser, CiViewList } from "react-icons/ci";
+
 const Home = () => {
   const axiosSecure = useAxios();
 
@@ -27,6 +28,11 @@ const Home = () => {
     queryFn: () => getData(),
   });
 
+
+
+  
+ 
+
   if (error) {
     return "An error has occurred: " + error.message;
   }
@@ -37,12 +43,6 @@ const Home = () => {
         <title>Foodient | Home</title>
       </Helmet>
       <Slider></Slider>
-
-      {/* <.div
-          
-        >
-         
-        </.div> */}
 
       <motion.div
         initial={{ opacity: 0, y: 50 }} // Start from slightly below the viewport
@@ -73,7 +73,6 @@ const Home = () => {
 
       <div className="flex justify-center my-6">
         <Link to="/availablefoods">
-          {" "}
           <button className="btn bg-[#FF5400] text-white font-bold">
             Show All Food
           </button>
@@ -81,26 +80,48 @@ const Home = () => {
       </div>
 
       <div className=" my-14 p-4">
-        <h3 className="text-center text-3xl font-bold my-6">What is Foodient</h3>
+        <h3 className="text-center text-3xl font-bold my-6">
+          What is Foodient
+        </h3>
         <div className="grid lg:grid-cols-3  grid-cols-1  gap-2 mx-auto text-[#A3A7AD]">
           <div className=" flex flex-col justify-center items-center">
-          <CiViewList  className="text-8xl"/>
-          <p className="text-center">We are dedicated to connecting individuals in need with resources to ensure no one goes hungry. Our platform serves as a bridge between those with surplus food and those facing food insecurity. Whether youre seeking assistance </p>
+            <CiViewList className="text-8xl" />
+            <p className="text-center">
+              We are dedicated to connecting individuals in need with resources
+              to ensure no one goes hungry. Our platform serves as a bridge
+              between those with surplus food and those facing food insecurity.
+              Whether youre seeking assistance
+            </p>
           </div>
           <div className=" flex flex-col justify-center items-center">
-           <CiUser className=" text-8xl text-center"/>
-            <p className="text-center">Safeguard Your Data with Register - Your Comprehensive Solution for Ironclad Security and Data Preservation! In a world where digital assets are invaluable, Register stands as your fortress against data breaches and loss. Our platform offers state-of-the-art encryption protocols</p>
+            <CiUser className=" text-8xl text-center" />
+
+            <div className="text-center text-base">
+              <h4 className="text-xl">
+                Secure Access, Personalized Recommendations!
+              </h4>
+        
+              Enjoy these benefits:
+              <ul className="list-disc px-3">
+                <li>Security: Your data is encrypted for safety.</li>
+                <li>
+                  Convenience: Easily access our platform with your login
+                  details
+                </li>
+              </ul>
+              Join us for a personalized experience!
+            </div>
           </div>
           <div className=" flex flex-col justify-center items-center ">
             <IoIosAddCircleOutline className=" text-8xl" />
             <p className="text-center">
-              
-  Absolutely, donating food is not only a noble act of kindness but also a crucial contribution to addressing food insecurity in communities. When considering food donations,
+              Absolutely, donating food is not only a noble act of kindness but
+              also a crucial contribution to addressing food insecurity in
+              communities. When considering food donations,
             </p>
           </div>
         </div>
       </div>
-
       <div className="grid md:grid-cols-2 grid-cols-1 mt-10">
         <div className=" p-8">
           <h2 className="text-2xl font-bold mb-4 border-l-[#FF5400] border-l-2 pl-3">
