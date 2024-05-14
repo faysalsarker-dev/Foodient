@@ -8,11 +8,15 @@ import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import animetionLoading from "../../../public/loading.json";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const SingleFood = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxios();
+  const [startDate, setStartDate] = useState(new Date());
 
 
 
@@ -165,20 +169,22 @@ const  Status= 'request'
             <div>{Doner_name}</div>
           </div>
           <div>
-            <button onClick={request} className="btn text-white bg-[#FF5400]">
-              View Detail
-            </button>
+          <button className="btn text-white bg-[#FF5400]" onClick={()=>document.getElementById('my_modal_1').showModal()}>Request</button>
           </div>
         </div>
       </div>
 
 
 {/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button>
+
 <dialog id="my_modal_1" className="modal">
   <div className="modal-box">
+
+
+
+    
   <div className="grid grid-cols-2 gap-2">
-    <div> <img src={img} className=" rounded-xl p-2" alt="" /></div>
+    <div className=" col-span-2"> <img src={img} className=" rounded-xl p-2" alt="" /></div>
     <div className="form-control">
       <label className="label">
         <span className="label-text">Food Name</span>
@@ -256,31 +262,39 @@ const  Status= 'request'
         disabled
       />
     </div>
-    <div className="form-control">
-      <label className="label">
-        <span className="label-text">Request Date</span>
-      </label>
-      <input
-        type="text"
-        
-        className="input input-bordered"
-        disabled
-      />
-    </div>
+    <div className="form-control ">
+                  <label className="label">
+                    <span className="label-text">Expired Date/Time</span>
+                  </label>
+                  <DatePicker
+                    className="border p-3 text-[#BCBFC3] w-full rounded-lg text-center "
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    disabled
+                  />
+                </div>
     <div className="form-control col-span-2">
       <label className="label">
         <span className="label-text">Additional Notes</span>
       </label>
       <textarea
         className="textarea textarea-bordered"
-        placeholder={AdditionalNotes}
+        defaultValue={AdditionalNotes}
       ></textarea>
     </div>
   </div>
-    <div className="modal-action">
-      <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn">Close</button>
+    <div className="modal-action flex justify-center ">
+      <form method="dialog" className="flex w-full gap-3">
+
+
+
+
+
+
+
+
+        <button onClick={request} className="btn w-2/4 text-white bg-[#FF5400]">Request now</button>
+        <button className="btn  w-2/4">Close</button>
       </form>
     </div>
   </div>

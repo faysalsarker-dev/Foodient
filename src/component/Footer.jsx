@@ -12,8 +12,8 @@ const Footer = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? " btn btn-ghost text-[#FF5400] font-bold"
-              : " btn btn-ghost"
+              ? " border-b-[#FF5400] border-b-2  font-bold"
+              : " "
           }
         >
           Home
@@ -24,8 +24,8 @@ const Footer = () => {
           to="/availablefoods"
           className={({ isActive }) =>
             isActive
-              ? " btn btn-ghost text-[#FF5400] font-bold"
-              : " btn btn-ghost"
+              ? " border-b-[#FF5400] border-b-2  font-bold"
+              : ""
           }
         >
           Available Foods
@@ -38,8 +38,8 @@ const Footer = () => {
               to="/addfood"
               className={({ isActive }) =>
                 isActive
-                  ? " btn btn-ghost text-[#FF5400] font-bold"
-                  : " btn btn-ghost"
+                  ? " border-b-[#FF5400] border-b-2  font-bold"
+                  : " "
               }
             >
               Add Food
@@ -50,8 +50,8 @@ const Footer = () => {
               to="/Manage-My-Foods"
               className={({ isActive }) =>
                 isActive
-                  ? " btn btn-ghost text-[#FF5400] font-bold"
-                  : " btn btn-ghost"
+                  ? " border-b-[#FF5400] border-b-2  font-bold"
+                  : ""
               }
             >
               Manage My Foods
@@ -62,8 +62,8 @@ const Footer = () => {
               to="/Food-Request"
               className={({ isActive }) =>
                 isActive
-                  ? "mr-2 btn btn-ghost text-[#FF5400] font-bold"
-                  : "mr-2 btn btn-ghost"
+                  ? " border-b-[#FF5400] border-b-2  font-bold"
+                  : ""
               }
             >
               Food Request
@@ -74,8 +74,8 @@ const Footer = () => {
     </>
   );
     return (
-<footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
-<Link to="/" className="btn btn-ghost flex text-xl font-bold">
+<footer className="footer footer-center p-10 mt-10 bg-base-200 text-base-content rounded">
+<Link to="/" className=" flex text-xl font-bold">
           <FaBowlFood />
           Foodient
         </Link>

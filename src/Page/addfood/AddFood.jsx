@@ -55,8 +55,8 @@ const AddFood = () => {
       <Helmet>
         <title>Foodient | Add Food</title>
       </Helmet>
-      <div className=" shadow-xl p-5 rounded-lg md:w-[90%]">
-        <div className="flex justify-center items-center px-5">
+      <div className=" shadow-xl p-5 rounded-lg w-[90%]">
+        <div className="flex justify-center items-center md:px-5">
           <h3 className="md:text-4xl text-2xl font-extrabold my-8 text-center pb-4 border-b-[#FF5400] border-b-2">
             Add your Food
           </h3>
