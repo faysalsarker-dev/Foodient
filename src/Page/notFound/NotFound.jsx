@@ -8,10 +8,10 @@ const NotFoundPage = () => {
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center border h-screen">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">404 - Page Not Found</h1>
-        <p className="text-lg text-gray-600 mb-8">
+    <div className="flex justify-center  "> <img className="w-2/4" src="https://img.freepik.com/premium-vector/empty-state-bluenoting-found-with-telescope-space-monitoring-planet-galaxy-star-404-error-message-empty-state-illustration-element_22052-4872.jpg?w=740" alt="" /></div>
+    <p className="text-lg text-gray-600 mb-8">
           Oops! Looks like youre lost. The page you are looking for does not exist.
         </p>
         <div className="flex justify-center space-x-4">
