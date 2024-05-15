@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import Lottie from "lottie-react";
 import animetionLoading from '../../../public/loading.json';
+import {  motion } from "framer-motion";
 
 const FoodReq = () => {
   const { user } = useAuth();
@@ -46,9 +47,18 @@ const FoodReq = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((table) => (
-              <tr key={table._id}>
-                <td>
+            {data?.map((table,idx) => (
+              <motion.tr
+              initial={{ y: 60, opacity: 0 }} 
+              whileInView={{y: 0, opacity: 1  }}
+              viewport={{once:true} }
+              transition={{ duration: 0.6, delay: 0.1 * (idx + 1), ease: "easeIn",
+             x: { type: "spring", stiffness: 60 }
+         }}
+              key={table._id}>
+                <td
+               
+                >
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
@@ -68,7 +78,7 @@ const FoodReq = () => {
 
                 <td>{new Date(table.expiredate).toLocaleString()}</td>
                 <td>{table.PickupLocation}</td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>

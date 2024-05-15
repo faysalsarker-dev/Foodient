@@ -1,16 +1,25 @@
 /* eslint-disable react/prop-types */
-
+import {  motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
 
-const Table = ({ tble, handleDelete }) => {
+
+const Table = ({ tble, handleDelete ,idx}) => {
 
 
   
 
   return (
     <>
-      <tr>
+      <motion.tr
+         initial={{ y: 60, opacity: 0 }} 
+         whileInView={{y: 0, opacity: 1  }}
+         viewport={{once:true} }
+         transition={{ duration: 0.6, delay: 0.1 * (idx + 1), ease: "easeIn",
+        x: { type: "spring", stiffness: 60 }
+    }}
+         
+      >
         <td>
           <div className="flex items-center gap-3">
             <div className="avatar">
@@ -45,7 +54,7 @@ const Table = ({ tble, handleDelete }) => {
             Delete
           </button>
         </td>
-      </tr>
+      </motion.tr>
 
     </>
   );

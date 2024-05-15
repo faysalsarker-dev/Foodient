@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
-
+import {  motion } from "framer-motion";
 
 import { CiLocationOn } from "react-icons/ci";
 
 
-const HomeCard = ({ pd}) => {
+const HomeCard = ({ pd,idx}) => {
   const {
     _id,
     name,
@@ -21,7 +21,15 @@ const HomeCard = ({ pd}) => {
 
  
   return (
-    <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 rounded-lg shadow-xl p-4 border my-1">
+    <motion.div 
+    initial={{ y: 60, opacity: 0 }} 
+    whileInView={{y: 0, opacity: 1  }}
+    viewport={{once:true} }
+    transition={{ duration: 0.6, delay: 0.1 * (idx + 1), ease: "easeIn",
+   x: { type: "spring", stiffness: 60 }
+}}
+    
+    className="grid lg:grid-cols-2 grid-cols-1 gap-4 rounded-lg shadow-xl p-4 border my-1">
       <img className=" rounded-lg" src={img} alt={name} />
       <div>
         <h1 className="text-2xl font-semibold">{name}</h1>
@@ -53,7 +61,7 @@ const HomeCard = ({ pd}) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

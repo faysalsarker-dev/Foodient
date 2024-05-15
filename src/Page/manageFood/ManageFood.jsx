@@ -92,11 +92,12 @@ const ManageFood = () => {
         </thead>
         <tbody>
           {/* Render data */}
-          {data?.map((tble) => (
+          {data?.map((tble,idx) => (
             <Table
               key={tble._id}
               handleDelete={handleDelete}
               tble={tble}
+              idx={idx}
             ></Table>
           ))}
         </tbody>

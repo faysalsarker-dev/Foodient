@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import { easeIn, motion } from "framer-motion";
-const Card = ({ pd }) => {
+import {  motion } from "framer-motion";
+const Card = ({ pd, idx}) => {
   const {
     _id,
     name,
@@ -16,12 +16,13 @@ const Card = ({ pd }) => {
   } = pd;
   return (
     <motion.div
-    initial={{ y: 50, opacity: 0 }} 
+    initial={{ y: 60, opacity: 0 }} 
     whileInView={{y: 0, opacity: 1  }}
     // viewport={{once:true} }
-    transition={{ duration: 0.6, delay: 0.2 ,ease:easeIn,
-      x:{type:"spring" ,stiffness:60}
-    }}
+    transition={{ duration: 0.6, delay: 0.1 * (idx + 1), ease: "easeIn",
+   x: { type: "spring", stiffness: 60 }
+}}
+    
     
     className="card p-2  bg-base-100 shadow-xl">
       <figure>

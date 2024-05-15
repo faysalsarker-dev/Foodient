@@ -69,20 +69,15 @@ const Home = () => {
           />
         </div>
       )}
-      <motion.div
-           initial={{ y: 100, opacity: 0 }} 
-           whileInView={{y: 0, opacity: 1  }}
-           viewport={{once:true} }
-           transition={{ duration: 0.7, delay: 0.4 ,ease:easeIn,
-             x:{type:"spring" ,stiffness:60}
-           }}
+      <div
+  
            
       
       className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4 mt-10">
-        {data?.map((pd) => (
-          <HomeCard key={pd._id} pd={pd}></HomeCard>
+        {data?.map((pd,idx) => (
+          <HomeCard key={pd._id} pd={pd} idx={idx}></HomeCard>
         ))}
-      </motion.div>
+      </div>
 
       <div className="flex justify-center my-6">
         <Link to="/availablefoods">
@@ -181,9 +176,9 @@ const Home = () => {
 
       <div className="grid md:grid-cols-2 grid-cols-1 mt-10">
         <motion.div 
-          initial={{ x: -50, opacity: 0 }} 
+          initial={{ x: -18, opacity: 0 }} 
           whileInView={{x: 0, opacity: 1  }} 
-          transition={{ duration: 0.6, delay: 0.4 ,ease:easeIn,
+          transition={{ duration: 0.8, delay: 0.9 ,ease:easeIn,
             x:{type:"spring" ,stiffness:60}
           }}
         
@@ -214,9 +209,9 @@ const Home = () => {
 
         <motion.div 
         
-        initial={{ x: 50, opacity: 0 }} 
+        initial={{ x: 18, opacity: 0 }} 
         whileInView={{x: 0, opacity: 1  }} 
-        transition={{ duration: 0.6, delay: 0.4 ,ease:easeIn,
+        transition={{ duration: 0.8, delay: 0.9 ,ease:easeIn,
           x:{type:"spring" ,stiffness:60}
         }}
         className=" p-4">
