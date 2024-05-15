@@ -40,6 +40,7 @@ const AvailableFood = () => {
   const handleSort = (e) => {
     e.preventDefault();
     const val = e.target.value;
+    console.log(val)
     setSort(val);
     refetch();
   };
@@ -90,7 +91,7 @@ const AvailableFood = () => {
             onChange={handleSort}
             value={sort}
           >
-            <option value="" disabled>
+            <option selected value="" disabled>
               Filter By Expire Date
             </option>
             <option value="descending">Descending</option>
