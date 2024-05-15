@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { CiLocationOn } from "react-icons/ci";
 import { Link } from "react-router-dom";
-
+import { easeIn, motion } from "framer-motion";
 const Card = ({ pd }) => {
   const {
     _id,
@@ -15,7 +15,15 @@ const Card = ({ pd }) => {
     Doner_img,
   } = pd;
   return (
-    <div className="card p-2  bg-base-100 shadow-xl">
+    <motion.div
+    initial={{ y: 50, opacity: 0 }} 
+    whileInView={{y: 0, opacity: 1  }}
+    // viewport={{once:true} }
+    transition={{ duration: 0.6, delay: 0.2 ,ease:easeIn,
+      x:{type:"spring" ,stiffness:60}
+    }}
+    
+    className="card p-2  bg-base-100 shadow-xl">
       <figure>
         <img src={img} className="p-1 rounded-xl" alt={name} />
       </figure>
@@ -53,7 +61,7 @@ const Card = ({ pd }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
