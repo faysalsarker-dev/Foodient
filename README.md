@@ -28,6 +28,34 @@ Welcome to Foodient! Below are some key points about our project:
   
 Feel free to explore the Foodient website and enjoy managing your food items hassle-free! If you have any questions or feedback, don't hesitate to reach out.
 
+## Installation
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+- Node.js
+- npm or yarn
+
+### Installation Steps
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/your-username/pattee.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd pattee
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+4. Create a `.env` file and add the necessary environment variables:
+    ```env
+    FIREBASE_CONFIG=your_firebase_config
+    ```
+5. Run the application:
+    ```sh
+    npm start
+    ```
 ## Contact
 - **Name:** Faysal Sarker
 - **GitHub (Server-side):** [Foodient Server Repository](https://github.com/faysalsarker-dev/Foodient-server)
