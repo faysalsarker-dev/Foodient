@@ -27,3 +27,12 @@ Welcome to Foodient! Below are some key points about our project:
   - [react-router-dom](https://www.npmjs.com/package/react-router-dom): For handling routing and navigation within the React application.
   
 Feel free to explore the Foodient website and enjoy managing your food items hassle-free! If you have any questions or feedback, don't hesitate to reach out.
+
+## Contact
+- **Name:** Faysal Sarker
+- **GitHub (Server-side):** [Foodient Server Repository](https://github.com/faysalsarker-dev/Foodient-server)
+- **Project Link:** [Foodient Website](https://foodient-ca6e1.web.app/)
+
+---
+
+Thank you for using Foodient! We hope you find it useful for managing your food items effectively.

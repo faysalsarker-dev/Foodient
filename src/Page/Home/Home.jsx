@@ -10,6 +10,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { easeIn, motion } from "framer-motion";
 
 import { CiUser, CiViewList } from "react-icons/ci";
+import Feedback from "./Feedback";
 
 const Home = () => {
   const axiosSecure = useAxios();
@@ -222,6 +223,15 @@ const Home = () => {
           />
         </motion.div>
       </div>
+
+
+
+<div>
+  
+</div>
+
+
+<Feedback></Feedback>
     </div>
   );
 };

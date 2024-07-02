@@ -1,12 +1,21 @@
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ContextData } from "../Context/AuthContext";
+
 const axiosSecure = axios.create({
-    //  baseURL:"http://localhost:5000",
-    baseURL:"https://server-teal-phi.vercel.app",
-    withCredentials:true
-})
+    // Adjust the baseURL as needed
+
+    // baseURL: "https://server-teal-phi.vercel.app",
+baseURL: "http://localhost:5000/",
+    withCredentials: true
+});
+
 const useAxios = () => {
-return axiosSecure 
+
+    
+    return axiosSecure;
 };
 
 export default useAxios;

@@ -41,7 +41,7 @@ const Card = ({ pd, idx}) => {
         </div>
         <p>
           <span className="font-semibold">Notes:</span>
-          {AdditionalNotes.slice(0, 20)}
+          {AdditionalNotes}
         </p>
 
         <div className="flex justify-between items-center my-2">
